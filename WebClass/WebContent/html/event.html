@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<style>
+		.bgYellow { background-color: yellow }
+		.bgPink { background-color: pink }
+		.bgWhite { background-color: white }
+		.border { 3px solid red }
+</style>
+<script>
+	function changeColor(color) {
+		var c = document.getElementById("container");
+		//c.style.backgroundColor = color;
+		c.setAttribute("class", color); // <div id="container" class "bgYellow"
+	}
+	function toUpperCase(e) {
+		//var w = document.getElementById("word");
+		//e.value = w.value.toUpperCase();
+		e.setAttribute("class", "border")
+	}
+	function addBorder(e) {
+		//var b = document.getElementById("box");
+		e.style.border = "3px solid red"
+	}
+	function removeBorder(e) {
+		//var rb = document.getElementById("box");
+		e.style.border = ""
+	}
+</script>
+</head>
+<body onload="alert('웹 페이지 로딩됨');">
+<div id="container" style ="background-color : yellow">
+<input type="radio" name="color" onclick="changeColor('bgYellow');">노란색
+<input type="radio" name="color" onclick="changeColor('bgPink');">핑크색
+<input type="radio" name="color" onclick="changeColor('bgWhite');">원래대로
+<br>
+<input type="text" id="word" onchange="toUpperCase(this);">
+<div id= "box" style="border : 3px solid red" onmouseover="addBorder(this);" onmouseout="removeBorder(this);">
+마우스를 위로 올려볼까나?
+</div>
+
+</div>
+</body>
+</html>

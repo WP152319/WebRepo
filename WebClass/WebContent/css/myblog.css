@@ -1,0 +1,22 @@
+@CHARSET "utf-8"
+.contaier {
+        padding-top: 30px;
+    }
+    
+.shadow4_nospread { 
+  color: black; 
+  text-shadow: skyblue 0px 2px, skyblue 2px 0px, skyblue -2px 0px, 
+    skyblue 0px -2px, skyblue -1.4px -1.4px, skyblue 1.4px 1.4px, 
+    skyblue 1.4px -1.4px, skyblue -1.4px 1.4px; 
+}
+p {
+  font-famliy : arial, helvetica, sans-serif;
+  font-size : 22px;
+  line-height : 1.6;
+  font-weight : bold;
+}
+
+.f1 {
+    color: #FCA205;
+    font-family: 'arial';
+}

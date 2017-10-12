@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import = "org.dimigo.vo.UserVo" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -36,48 +36,18 @@
           <a class="nav-link" href="location.html">주소</a>
         </li>
       </ul>
-      <%-- 세션이 없는 경우 --%>
-    <%
-			UserVo user=(UserVo)session.getAttribute("user");
-			if(user==null){
- 
-	%>
-    	<a class="text-bold text-white" style="text-decoration: none" href="/WebClass/bloglogin">Sign in</a>
-    	<span class="text-bold text-white">&nbsp; or &nbsp;</span>
-    	<a class="text-bold text-white" style="text-decoration: none" href="">Sign up</a>
-    
-	<% } else { %>
-	<%-- 세션이 있는 경우 --%>
-	    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-	    <li class="nav-item dropdown">
-	      <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    	<%= user.getName()+ "님"%>	      </a>
-	      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
-	      	<form action="/WebClass/bloglogout" method="post">
-	      		<button type="submit" class="dropdown-item">Sign out</button>
-	       	</form>
-	      </div>
-	    </li>
-	    </ul>
-	    
-	    <% } %>
-	    
-	    <script>
-	    
-	    <%@ include file="modal.jsp"%>
-		
-	<%-- 로그인이 실패한 경우 처리 추가 --%>
-	<%
-		if("error".equals(request.getAttribute("msg"))){
-	%>
-		var myModal = $('#myModal');
-		myModal.find('.modal-title').text('Login Error');
-		myModal.find('.modal-body').text('Invalid username or password');
-		myModal.modal();
-	<%
-		}
-	%>
-	</script>
+      <% if(session.getAttribute("user")==null) { %>
+      <form class="form-inline my-2 my-lg-0" id="loginForm">
+        <input class="form-control mr-sm-2" type="text" placeholder="ID" aria-label="ID" id="id" required >
+        <input class="form-control mr-sm-2" type="password" placeholder="PWD" aria-label="PWD" id="pwd" required >
+        <button type="submit" class="btn btn-primary"  >Login</button>
+      </form>
+      <% } else { %>
+      <%=((UserVo)session.getAttribute("user")).getName() %>
+      <form class="form-inline my-2 my-lg-0" method="post" action="/WebClass/bloglogout">
+        <button type="submit" class="btn btn-primary"  >Logout</button>
+      </form>
+      <% } %>
     </div>
   </nav>
 

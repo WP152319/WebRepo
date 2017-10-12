@@ -16,14 +16,19 @@ $(document).ready(function(){
 
         //console.log(id, pwd);
         // 서버로 post 방식으로 전송
-        	$.post("http://httpbin.org/post",
+        	$.post("/WebClass/bloglogin",
                     { id: id, pwd: pwd},
                     function(data) {
                         //alert(data.form.id + '님 로그인 되었습니다.');
-                        var myModal = $('#myModal');
-                      	//console.log("아이디 : "+data.form.id);
-                        document.getElementById('loginResult').innerHTML = data.form.id + '님 로그인 되었습니다';
-                        myModal.modal();
+                    	if(data.msg=="error"){
+                    		var myModal = $('#myModal');
+                          	//console.log("아이디 : "+data.form.id);
+                            document.getElementById('loginResult').innerHTML = "로그인에 실패했습니다."
+                            myModal.modal();
+                    	}
+                    	else{
+                    		location.reload();
+                    	}
             });
     });
 });

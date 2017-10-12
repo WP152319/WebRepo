@@ -1,6 +1,7 @@
 package org.dimigo.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.dimigo.vo.UserVo;
+
+import com.google.gson.JsonObject;
 
 /**
  * Servlet implementation class BlogLoginServlet
@@ -44,18 +47,11 @@ public class BlogLoginServlet extends HttpServlet {
 		String name = "테스트아이디";
 		String pwd=request.getParameter("pwd");
 		System.out.printf("id: %s, pwd: %s\n",id,pwd);
-		String sen = "test@naver.com";	
 		
-		response.setContentType("text/html;charset-utf-8");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
 		
-		// id, pwd 정확성 체크
-		boolean result=false;
-		
-		if(id.equals(sen)){
-			result = true;
-		}
-		
-		if(result){
+		if(id.equals("test@naver.com")){
 			//세션에 사용자 정보생성
 			HttpSession session=request.getSession();
 			
@@ -65,15 +61,17 @@ public class BlogLoginServlet extends HttpServlet {
 	
 			session.setAttribute("user", user);
 		
-			RequestDispatcher rd =request.getRequestDispatcher("myblog2319/home.jsp");
-			rd.forward(request, response);
+			JsonObject o = new JsonObject();
+			o.addProperty("id", id);
+			out.print(o.toString());
 		}
 	
 		else {
-			request.setAttribute("msg", "error");
-			RequestDispatcher rd =request.getRequestDispatcher("myblog2319/login.jsp");
-			rd.forward(request, response);	
+			JsonObject o = new JsonObject();
+			o.addProperty("msg", "error");
+			out.print(o.toString());
 		}
+		out.close();
 	}
 
 }

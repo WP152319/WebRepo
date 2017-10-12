@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import = "org.dimigo.vo.UserVo" %>
 <!DOCTYPE html>
-<html lang="">
+<html lang="ko">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
